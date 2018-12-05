@@ -22,7 +22,7 @@ do
             read -r  My_old_cars
             ;;
 	"Quit")
-           echo "Goodbye!"
+           echo "Thank you! Goodbye."
            break
             ;;
     esac
