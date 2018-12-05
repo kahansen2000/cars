@@ -2,18 +2,28 @@
 # cars.sh
 #Katherine Hansen
 
-echo "Welcome to my cars program"
-answer=1
-while [ $answer -eq 1]
-echo "1 Add a car"
-echo "2 View the list of cars"
-echo "3 Quit the program"
-read answer	
-if[ $answer -eq $1 ]
-	echo "Enter the year"
-	read year
-	echo "Enter the Make"
-	read make
-	echo "Enter the model"
-	read model
-	cat "$year:$make:$model" >> My_old_cars
+echo "To make a choice, enter the number you'd like to choose"
+PS3='Enter your next choice: '
+options=("Add a car" "View the cars" "Quit")
+select opt in "${options[@]}"
+do      
+    case $opt in
+        "Add a car")
+            echo "What is the year of the car? "
+                read year
+                echo "What is the make of the car? "
+                read make 
+                echo "What is the model of the car? "
+                read model 
+                echo "$year:$make:$model" >> My_old_cars
+            ;; 
+        "View the cars")
+            sort My_old_cars
+            read -r  My_old_cars
+            ;;
+	"Quit")
+           echo "Goodbye!"
+           break
+            ;;
+    esac
+done
